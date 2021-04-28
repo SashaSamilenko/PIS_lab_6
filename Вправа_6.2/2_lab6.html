@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <meta charset="utf-8">
+ <title>Person</title>
+ <!-- Посилання на таблицю стилів для розділів документу -->
+ <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="styleshe
+et">
+ <link rel="stylesheet" href="ajax.css">
+ </head>
+ <body>
+ <header>
+ </header>
+ <section>
+ </section>
+ <script type="text/javascript">
+ var header = document.querySelector('header');
+ var section = document.querySelector('section');
+ var requestURL = "https://gorest.co.in/public-api/users?id=21";
+ var request = new XMLHttpRequest();
+ request.open('GET', requestURL);
+ request.responseType = 'json';
+ request.send();
+ request.onload = function()
+ {
+ var person_json = request.response;
+ showPerson(person_json);
+ }
+ function showPerson(jsonObj)
+ {
+ 	var myArticle = document.createElement('article');
+ 	var myH1 = document.createElement('h2');
+	myH1.textContent="Ім'я: "+jsonObj.data[0].name;;
+	myArticle.appendChild(myH1);
+ 	var email = document.createElement('h2');
+	var gender = document.createElement('h2');
+	var status = document.createElement('h2');
+	var created_at=document.createElement('h2');
+	var updated_at=document.createElement('h2');
+	email.textContent = "Email: "+jsonObj.data[0].email;
+	gender.textContent = "Gender: "+jsonObj.data[0].gender;
+	status.textContent = "Status:"+jsonObj.data[0].status;
+	created_at.textContent="Date of creating: "+jsonObj.data[0].created_at;
+	updated_at.textContent="Date of updating: "+jsonObj.data[0].updated_at;
+	myArticle.appendChild(email);
+	myArticle.appendChild(gender);
+	myArticle.appendChild(status);
+ 	myArticle.appendChild(created_at);
+	myArticle.appendChild(updated_at);
+	section.appendChild(myArticle);
+}
+ </script>
+ </body>
+</html>
