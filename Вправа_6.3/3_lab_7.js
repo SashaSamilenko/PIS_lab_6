@@ -1,7 +1,7 @@
 const http = require('http');
 var filer = require('fs');
 
-function getResponseForRequest(response)
+function getResponseForRequest(request, response)
 {
 	response.writeHead(200,{'Content-Type': 'text/html'});
 	filer.readFile("3_lab_7.html",null, function(error, information)
